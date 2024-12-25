@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MauiApp1.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib">
+    <ContentPage.Resources>
+        <scg:List
+            x:Key="Colors"
+            x:TypeArguments="x:String">
+            <x:String>Red</x:String>
+            <x:String>Orange</x:String>
+            <x:String>Yellow</x:String>
+            <x:String>Green</x:String>
+            <x:String>Blue</x:String>
+            <x:String>Indigo</x:String>
+            <x:String>Violet</x:String>
+        </scg:List>
+        <LinearItemsLayout
+            x:Key="VerticalList"
+            ItemSpacing="5"
+            Orientation="Vertical" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,40">
+            <Grid ColumnDefinitions="*,*,*">
+                <CollectionView
+                    BackgroundColor="Yellow"
+                    Header="Horizontal - Start"
+                    HorizontalOptions="Center"
+                    ItemsLayout="{StaticResource VerticalList}"
+                    ItemsSource="{StaticResource Colors}"
+                    VerticalOptions="Center">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Label
+                                HorizontalOptions="Start"
+                                Text="{Binding}"
+                                VerticalOptions="Center" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <CollectionView
+                    Grid.Column="1"
+                    BackgroundColor="LightGrey"
+                    Header="Horizontal - Center"
+                    HorizontalOptions="Center"
+                    ItemsLayout="{StaticResource VerticalList}"
+                    ItemsSource="{StaticResource Colors}"
+                    VerticalOptions="Center">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Binding}"
+                                VerticalOptions="Center" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <CollectionView
+                    Grid.Column="2"
+                    BackgroundColor="Yellow"
+                    Header="Horizontal - End"
+                    HorizontalOptions="Center"
+                    ItemsLayout="{StaticResource VerticalList}"
+                    ItemsSource="{StaticResource Colors}"
+                    VerticalOptions="Center">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <Label
+                                HorizontalOptions="End"
+                                Text="{Binding}"
+                                VerticalOptions="Center" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark},
+                                                  Light={StaticResource Primary}}">
+
+                <Label
+                    x:Name="versionLabel"
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource White}"
+                    VerticalOptions="Center" />
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
